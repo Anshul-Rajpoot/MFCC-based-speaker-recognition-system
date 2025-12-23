@@ -1,30 +1,80 @@
-# MFCC-Based Speaker Recognition System
-*Python, NumPy, SciPy, Librosa, Streamlit, Signal Processing*
+# 🎤 MFCC-Based Speaker Recognition System
+**Python | NumPy | SciPy | Librosa | Streamlit | DSP | ML-ready**
+
+<img width="1886" height="893" alt="image" src="https://github.com/user-attachments/assets/46e3f62f-27f0-4e68-ace5-4b214f455a1b" />
 
 ---
 
-## 🎯 Overview
-This project implements a **speaker recognition system** that differentiates individuals based on their voice using **MFCC (Mel-Frequency Cepstral Coefficients)** features.  
-It includes a **Streamlit dashboard** for real-time visualization of audio signals, spectrograms, and MFCC heatmaps. This system can be used for voice authentication, speaker verification, or educational purposes in signal processing.
+## 📌 Overview
+This project implements an **MFCC-based Speaker Recognition System** that analyzes and compares human voices using **Digital Signal Processing (DSP)** techniques and **statistical feature engineering**.
+
+The system provides an **interactive Streamlit dashboard** to visualize audio signals, MFCC features, and speaker similarity scores.
+
+### Applications
+- Speaker recognition & verification  
+- Voice-based authentication systems  
+- Learning DSP & speech processing  
+- Internship & placement demonstrations  
 
 ---
 
-## ⚡ Key Features
-- ✅ **MFCC Feature Extraction Pipeline:**  
-  Extracts key audio features using pre-emphasis, framing, FFT, Mel filter bank, log-energy, and DCT to distinguish speakers accurately.
-- 📊 **Interactive Streamlit Dashboard:**  
-  Visualizes:
-  - Waveforms of uploaded audio samples  
-  - Spectrograms showing frequency over time  
-  - MFCC heatmaps for feature comparison  
-- ⚙️ **Parameter Optimization:**  
-  Fine-tuned frame size, overlap, and number of Mel filters to improve recognition precision.  
-- 🧩 **Flexible Input:**  
-  Supports `.wav` audio files and allows comparison of multiple samples in real-time.
+## ⚙️ System Architecture
+Audio Input (.wav)
+↓
+Pre-emphasis
+↓
+Framing + Windowing
+↓
+FFT → Power Spectrum
+↓
+Mel Filter Bank
+↓
+Log Compression
+↓
+DCT → MFCC
+↓
+Δ & ΔΔ Features
+↓
+Statistical Aggregation
+↓
+Speaker Similarity (Cosine Distance)
+
 
 ---
 
-## 🚀 Usage
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/Anshul-Rajpoot/Python-projects.git
+## ✨ Key Features
+
+### 🔹 MFCC Feature Extraction (From Scratch)
+- Pre-emphasis filtering  
+- Frame blocking & Hamming window  
+- FFT & power spectrum computation  
+- Mel filter bank energy calculation  
+- Log scaling & DCT for MFCCs  
+
+### 🔹 Advanced Speech Features
+- MFCC (static coefficients)  
+- Delta (Δ) and Delta-Delta (ΔΔ) features  
+- Short-time Energy  
+- Zero Crossing Rate (ZCR)  
+- Fixed-length statistical feature vectors (mean + std)
+
+### 🔹 Interactive Streamlit Dashboard
+- Time-domain waveform visualization  
+- Spectrogram (time–frequency analysis)  
+- MFCC heatmaps  
+- Feature variance analysis  
+- Real-time parameter tuning  
+
+### 🔹 Speaker Similarity & Verification
+- Upload two voice samples  
+- Cosine similarity-based comparison  
+- Decision: **Same Speaker / Different Speaker**
+
+---
+
+## 🚀 How to Run the Project
+
+### 1️⃣ Clone the Repository
+```bash
+git clone https://github.com/Anshul-Rajpoot/MFCC-based-speaker-recognition-system.git
+cd MFCC-based-speaker-recognition-system
