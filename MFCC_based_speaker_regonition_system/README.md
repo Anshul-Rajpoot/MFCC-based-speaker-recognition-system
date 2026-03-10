@@ -131,14 +131,14 @@ streamlit run app.py
 ## 📂 Project Structure
 
 ```
-MFCC-based-speaker-recognition-system/
+🎤 MFCC-Based Speaker Recognition
 │
-├── app.py                 # Streamlit dashboard
-├── mfcc.py                # MFCC feature extraction logic
-├── audio_utils.py         # Audio preprocessing utilities
-├── requirements.txt       # Python dependencies
-├── runtime.txt            # Python version for deployment
-└── README.md
+├── Live Demo Badge
+├── Screenshot
+├── System Architecture
+├── Features
+├── How to Run
+└── Author
 ```
 
 ---
