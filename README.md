@@ -9,7 +9,7 @@
 ## 🚀 Live Demo
 
 🔗 **Try the App:**
-https://mfcc-projects-rfumxrgh8kg48pa2n3mirx.streamlit.app
+https://mfcc-based-speaker-recognition-system-ykjnr2bja8rdzdds3zmpc4.streamlit.app/
 
 ---
 
