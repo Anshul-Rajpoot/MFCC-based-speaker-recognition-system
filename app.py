@@ -98,11 +98,7 @@ tabs = st.tabs([
 with tabs[0]:
     st.subheader("Project Overview")
     st.markdown("""
-    **Pipeline**
-    ```
-    Audio → Framing → FFT → Mel Filters → Log → DCT → MFCC
-          → Δ → ΔΔ → Statistical Features → Similarity
-    ```
+   
     **Applications**
     - Speaker Recognition
     - Voice Biometrics
