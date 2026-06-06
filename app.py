@@ -66,27 +66,41 @@ def load_audio(uploaded_file):
 # MAIN TITLE
 # --------------------------------------------------
 st.title("🎤 MFCC-Based Speaker Feature Analysis System")
+
 st.markdown("""
 ### 🎯 Project Objective
 
-This project performs speech analysis using
-**Mel Frequency Cepstral Coefficients (MFCC)** and compares
-speakers using **Cosine Similarity**.
+This application analyzes speech signals using the
+**Mel Frequency Cepstral Coefficient (MFCC)** technique and
+compares speakers using **Cosine Similarity**.
 
-The system provides:
+### 🚀 Features
 
-- Speech Visualization
-- MFCC Extraction
-- Feature Analysis
-- Speaker Similarity Detection
+- 📈 Time Domain Analysis
+- 🌈 Spectrogram Visualization
+- 🧠 MFCC Feature Extraction
+- 📊 Feature Variance Analysis
+- 🎯 Speaker Similarity Detection
 """)
 
-uploaded_file = st.file_uploader("📂 Upload WAV file", type=["wav"])
+uploaded_file = st.file_uploader(
+    "📂 Upload WAV File",
+    type=["wav"]
+)
+
 if uploaded_file:
-    st.audio(uploaded_file)
+
+    st.success("Audio file uploaded successfully.")
+
+    st.audio(
+        uploaded_file,
+        format="audio/wav"
+    )
 
 if uploaded_file is None:
-    st.warning("Please upload an audio file to proceed.")
+    st.warning(
+        "Please upload a WAV audio file to begin analysis."
+    )
     st.stop()
 
 signal, sr = load_audio(uploaded_file)
@@ -101,8 +115,10 @@ mfcc_processor = MFCCProcessor(
     pre_emphasis=pre_emphasis
 )
 
-result = mfcc_processor.full_pipeline(signal, sr)
-
+result = mfcc_processor.full_pipeline(
+    signal,
+    sr
+)
 # --------------------------------------------------
 # TABS
 # --------------------------------------------------
