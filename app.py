@@ -161,7 +161,7 @@ with tabs[3]:
         "Upload second WAV file", type=["wav"], key="speaker2"
     )
     if uploaded_file_2:
-    st.audio(uploaded_file)
+        st.audio(uploaded_file_2)
 
     if uploaded_file_2:
         signal2, sr2 = load_audio(uploaded_file_2)
