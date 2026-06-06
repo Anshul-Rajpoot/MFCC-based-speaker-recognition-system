@@ -88,7 +88,6 @@ tabs = st.tabs([
     "📌 Overview",
     "📈 Signal Analysis",
     "🧠 MFCC Features",
-    "🧪 Parameter Study",
     "👤 Speaker Similarity"
 ])
 
