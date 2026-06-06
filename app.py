@@ -26,31 +26,33 @@ st.set_page_config(
 # --------------------------------------------------
 st.sidebar.title("🎓 Project Info")
 st.sidebar.markdown("""
-### 👨‍💻 Developer
+<div style="
+padding:15px;
+border-radius:12px;
+background:linear-gradient(135deg,#1e3c72,#2a5298);
+color:white;
+text-align:center;
+">
 
-**Anshul Rajpoot**  
-📘 Scholar No: `2311401168`  
+<h3>👨‍💻 Developer</h3>
 
-🎓 Electronics & Communication Engineering  
+<b style="font-size:18px;">
+Anshul Rajpoot
+</b>
+
+<br><br>
+
+📘 Scholar No<br>
+<code>2311401168</code>
+
+<br><br>
+
+🎓 Electronics & Communication Engineering
+
 🏛️ MANIT Bhopal
-""")
 
-st.sidebar.markdown("---")
-st.sidebar.header("⚙️ MFCC Parameters")
-
-frame_size = st.sidebar.slider("Frame Size (ms)", 20, 50, 25)
-overlap = st.sidebar.slider("Frame Overlap (%)", 0, 90, 50)
-frame_stride_ms = int(frame_size * (1 - overlap / 100))
-
-n_fft = st.sidebar.selectbox("FFT Size", [256, 512, 1024], index=1)
-n_mels = st.sidebar.slider("Mel Filters", 10, 40, 20)
-n_mfcc = st.sidebar.slider("MFCC Coefficients", 5, 20, 13)
-pre_emphasis = st.sidebar.slider("Pre-emphasis", 0.90, 0.99, 0.97)
-
-st.sidebar.markdown("---")
-st.sidebar.caption(f"Session ID: `{str(uuid.uuid4())[:8]}`")
-st.sidebar.caption(datetime.now().strftime("%d %b %Y | %H:%M"))
-
+</div>
+""", unsafe_allow_html=True)
 # --------------------------------------------------
 # AUDIO LOADER
 # --------------------------------------------------
@@ -64,12 +66,24 @@ def load_audio(uploaded_file):
 # MAIN TITLE
 # --------------------------------------------------
 st.title("🎤 MFCC-Based Speaker Feature Analysis System")
-st.markdown(
-    "An **interactive DSP + ML pipeline** for extracting and analyzing "
-    "**MFCC features** used in speaker recognition systems."
-)
+st.markdown("""
+### 🎯 Project Objective
+
+This project performs speech analysis using
+**Mel Frequency Cepstral Coefficients (MFCC)** and compares
+speakers using **Cosine Similarity**.
+
+The system provides:
+
+- Speech Visualization
+- MFCC Extraction
+- Feature Analysis
+- Speaker Similarity Detection
+""")
 
 uploaded_file = st.file_uploader("📂 Upload WAV file", type=["wav"])
+if uploaded_file:
+    st.audio(uploaded_file)
 
 if uploaded_file is None:
     st.warning("Please upload an audio file to proceed.")
@@ -102,19 +116,63 @@ tabs = st.tabs([
 # --------------------------------------------------
 # TAB 1: OVERVIEW
 # --------------------------------------------------
+
+st.markdown("""
+### ⚙️ Current Parameters
+
+- Frame Size: {} ms
+- Frame Overlap: {} %
+- FFT Size: {}
+- Mel Filters: {}
+- MFCC Coefficients: {}
+- Pre-emphasis: {}
+""".format(
+    frame_size,
+    overlap,
+    n_fft,
+    n_mels,
+    n_mfcc,
+    pre_emphasis
+))
+
 with tabs[0]:
     st.subheader("Project Overview")
+
     st.markdown("""
-   
-    **Applications**
-    - Speaker Recognition
-    - Voice Biometrics
-    - Speech Analysis
-    """)
+### 🔄 Processing Pipeline
 
-    st.metric("Audio Duration (sec)", f"{len(signal)/sr:.2f}")
-    st.metric("Sample Rate (Hz)", sr)
+Audio → Pre-emphasis → Framing → Windowing → FFT
+→ Mel Filter Bank → Log → DCT → MFCC
+→ Delta → Delta-Delta → Feature Vector
+→ Speaker Similarity
 
+### 🚀 Applications
+
+- Speaker Recognition
+- Voice Biometrics
+- Speech Analysis
+- Audio Analytics
+""")
+
+    col1, col2, col3 = st.columns(3)
+
+    with col1:
+        st.metric(
+            "Duration",
+            f"{len(signal)/sr:.2f} sec"
+        )
+
+    with col2:
+        st.metric(
+            "Sample Rate",
+            f"{sr} Hz"
+        )
+
+    with col3:
+        st.metric(
+            "MFCC Features",
+            n_mfcc
+        )
 # --------------------------------------------------
 # TAB 2: SIGNAL ANALYSIS
 # --------------------------------------------------
@@ -143,8 +201,30 @@ with tabs[2]:
     with col2:
         st.pyplot(mfcc_processor.plot_feature_variance(result["mfcc"]))
 
-    st.markdown("**Feature Vector Dimension:**")
-    st.code(result["feature_vector"].shape)
+   st.info(
+    f"Feature Vector Size: "
+    f"{result['feature_vector'].shape[0]}"
+
+       st.markdown("### Extracted Features")
+
+       
+feature_col1, feature_col2, feature_col3 = st.columns(3)
+
+feature_col1.metric(
+    "MFCC",
+    result["mfcc"].shape[1]
+)
+
+feature_col2.metric(
+    "Delta",
+    result["delta"].shape[1]
+)
+
+feature_col3.metric(
+    "Delta-Delta",
+    result["delta2"].shape[1]
+)
+)
 
 
 # --------------------------------------------------
@@ -179,9 +259,38 @@ with tabs[3]:
             result2["feature_vector"]
         )
 
-        st.metric("Speaker Similarity Score", f"{similarity:.3f}")
+        st.metric(
+    "Speaker Similarity Score",
+    f"{similarity:.3f}"
+)
 
-        if similarity > 0.8:
-            st.success("Likely SAME speaker")
-        else:
-            st.error("Likely DIFFERENT speakers")
+st.progress(float(similarity))
+
+       if similarity >= 0.9:
+    st.success(
+        "Very High Similarity"
+    )
+
+elif similarity >= 0.8:
+    st.success(
+        "Likely SAME Speaker"
+    )
+
+elif similarity >= 0.6:
+    st.warning(
+        "Moderate Similarity"
+    )
+
+else:
+    st.error(
+        "Likely DIFFERENT Speaker"
+    )
+
+
+
+st.markdown("---")
+
+st.caption(
+    "🎤 MFCC-Based Speaker Feature Analysis System | "
+    "Developed by Anshul Rajpoot | MANIT Bhopal"
+)
