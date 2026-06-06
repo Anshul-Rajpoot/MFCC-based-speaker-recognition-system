@@ -238,16 +238,22 @@ with tabs[2]:
 # TAB 4: SPEAKER SIMILARITY
 # --------------------------------------------------
 with tabs[3]:
-    st.subheader("Speaker Similarity (Cosine Distance)")
+    st.subheader("Speaker Similarity (Cosine Similarity)")
 
-    st.markdown("Upload another audio sample to compare speakers.")
+    st.markdown(
+        "Upload another audio sample to compare speakers."
+    )
 
     uploaded_file_2 = st.file_uploader(
-        "Upload second WAV file", type=["wav"], key="speaker2"
+        "Upload second WAV file",
+        type=["wav"],
+        key="speaker2"
     )
 
     if uploaded_file_2:
+
         signal2, sr2 = load_audio(uploaded_file_2)
+        st.audio(uploaded_file_2)
 
         mfcc_processor_2 = MFCCProcessor(
             sr=sr2,
@@ -259,7 +265,10 @@ with tabs[3]:
             pre_emphasis=pre_emphasis
         )
 
-        result2 = mfcc_processor_2.full_pipeline(signal2, sr2)
+        result2 = mfcc_processor_2.full_pipeline(
+            signal2,
+            sr2
+        )
 
         similarity = MFCCProcessor.speaker_similarity(
             result["feature_vector"],
@@ -267,34 +276,35 @@ with tabs[3]:
         )
 
         st.metric(
-    "Speaker Similarity Score",
-    f"{similarity:.3f}"
-)
+            "Speaker Similarity Score",
+            f"{similarity:.3f}"
+        )
 
-st.progress(float(similarity))
+        st.progress(float(similarity))
 
-       if similarity >= 0.9:
-    st.success(
-        "Very High Similarity"
-    )
+        if similarity >= 0.9:
+            st.success(
+                "🎯 Very High Similarity"
+            )
 
-elif similarity >= 0.8:
-    st.success(
-        "Likely SAME Speaker"
-    )
+        elif similarity >= 0.8:
+            st.success(
+                "✅ Likely SAME Speaker"
+            )
 
-elif similarity >= 0.6:
-    st.warning(
-        "Moderate Similarity"
-    )
+        elif similarity >= 0.6:
+            st.warning(
+                "⚠️ Moderate Similarity"
+            )
 
-else:
-    st.error(
-        "Likely DIFFERENT Speaker"
-    )
+        else:
+            st.error(
+                "❌ Likely DIFFERENT Speaker"
+            )
 
-
-
+# --------------------------------------------------
+# FOOTER
+# --------------------------------------------------
 st.markdown("---")
 
 st.caption(
