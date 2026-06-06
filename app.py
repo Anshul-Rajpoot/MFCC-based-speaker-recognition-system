@@ -59,7 +59,8 @@ def load_audio(uploaded_file):
     audio_bytes = uploaded_file.read()
     signal, sr = librosa.load(io.BytesIO(audio_bytes), sr=None)
     return signal, sr
-
+if uploaded_file:
+    st.audio(uploaded_file)
 # --------------------------------------------------
 # MAIN TITLE
 # --------------------------------------------------
