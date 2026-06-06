@@ -187,6 +187,7 @@ with tabs[1]:
     with col2:
         st.pyplot(mfcc_processor.plot_spectrogram(signal, sr, "Spectrogram"))
 
+
 # --------------------------------------------------
 # TAB 3: MFCC FEATURES
 # --------------------------------------------------
@@ -196,36 +197,42 @@ with tabs[2]:
     col1, col2 = st.columns(2)
 
     with col1:
-        st.pyplot(mfcc_processor.plot_mfcc(result["mfcc"], sr))
+        st.pyplot(
+            mfcc_processor.plot_mfcc(
+                result["mfcc"], sr
+            )
+        )
 
     with col2:
-        st.pyplot(mfcc_processor.plot_feature_variance(result["mfcc"]))
+        st.pyplot(
+            mfcc_processor.plot_feature_variance(
+                result["mfcc"]
+            )
+        )
 
-   st.info(
-    f"Feature Vector Size: "
-    f"{result['feature_vector'].shape[0]}"
+    st.info(
+        f"Feature Vector Size: "
+        f"{result['feature_vector'].shape[0]}"
+    )
 
-       st.markdown("### Extracted Features")
+    st.markdown("### Extracted Features")
 
-       
-feature_col1, feature_col2, feature_col3 = st.columns(3)
+    feature_col1, feature_col2, feature_col3 = st.columns(3)
 
-feature_col1.metric(
-    "MFCC",
-    result["mfcc"].shape[1]
-)
+    feature_col1.metric(
+        "MFCC",
+        result["mfcc"].shape[1]
+    )
 
-feature_col2.metric(
-    "Delta",
-    result["delta"].shape[1]
-)
+    feature_col2.metric(
+        "Delta",
+        result["delta"].shape[1]
+    )
 
-feature_col3.metric(
-    "Delta-Delta",
-    result["delta2"].shape[1]
-)
-)
-
+    feature_col3.metric(
+        "Delta-Delta",
+        result["delta2"].shape[1]
+    )
 
 # --------------------------------------------------
 # TAB 4: SPEAKER SIMILARITY
