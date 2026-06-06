@@ -139,23 +139,11 @@ with tabs[2]:
     st.markdown("**Feature Vector Dimension:**")
     st.code(result["feature_vector"].shape)
 
+
 # --------------------------------------------------
-# TAB 4: PARAMETER STUDY
+# TAB 4: SPEAKER SIMILARITY
 # --------------------------------------------------
 with tabs[3]:
-    st.subheader("Parameter Sensitivity Analysis")
-
-    st.info(
-        "Adjust parameters from the sidebar and observe changes "
-        "in MFCC patterns and variance."
-    )
-
-    st.pyplot(mfcc_processor.plot_mfcc(result["mfcc"], sr))
-
-# --------------------------------------------------
-# TAB 5: SPEAKER SIMILARITY
-# --------------------------------------------------
-with tabs[4]:
     st.subheader("Speaker Similarity (Cosine Distance)")
 
     st.markdown("Upload another audio sample to compare speakers.")
