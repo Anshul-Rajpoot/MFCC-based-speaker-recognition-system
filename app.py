@@ -185,4 +185,3 @@ with tabs[3]:
             st.success("Likely SAME speaker")
         else:
             st.error("Likely DIFFERENT speakers")
-for dev info card style and if you want to  make more changes then do
