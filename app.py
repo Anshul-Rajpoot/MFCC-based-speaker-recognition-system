@@ -25,7 +25,15 @@ st.set_page_config(
 # SIDEBAR
 # --------------------------------------------------
 st.sidebar.title("🎓 Project Info")
-st.sidebar.info("**Anshul Rajpoot**\n\nECE | MANIT Bhopal")
+st.sidebar.markdown("""
+### 👨‍💻 Developer
+
+**Anshul Rajpoot**  
+📘 Scholar No: `2311401168`  
+
+🎓 Electronics & Communication Engineering  
+🏛️ MANIT Bhopal
+""")
 
 st.sidebar.markdown("---")
 st.sidebar.header("⚙️ MFCC Parameters")
