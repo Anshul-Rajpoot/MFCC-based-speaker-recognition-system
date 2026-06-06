@@ -59,8 +59,7 @@ def load_audio(uploaded_file):
     audio_bytes = uploaded_file.read()
     signal, sr = librosa.load(io.BytesIO(audio_bytes), sr=None)
     return signal, sr
-if uploaded_file:
-    st.audio(uploaded_file)
+
 # --------------------------------------------------
 # MAIN TITLE
 # --------------------------------------------------
@@ -71,6 +70,8 @@ st.markdown(
 )
 
 uploaded_file = st.file_uploader("📂 Upload WAV file", type=["wav"])
+if uploaded_file:
+    st.audio(uploaded_file)
 
 if uploaded_file is None:
     st.warning("Please upload an audio file to proceed.")
