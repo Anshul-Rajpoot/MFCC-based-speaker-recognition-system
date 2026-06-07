@@ -147,7 +147,6 @@ with tabs[2]:
         st.pyplot(mfcc_processor.plot_feature_variance(result["mfcc"]))
 
     st.markdown("**Feature Vector Dimension:**")
-    st.code(result["feature_vector"])
     st.code(result["feature_vector"].shape)
 
 
