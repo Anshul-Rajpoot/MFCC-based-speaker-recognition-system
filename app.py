@@ -38,6 +38,7 @@ st.sidebar.markdown("""
 st.sidebar.markdown("---")
 st.sidebar.header("⚙️ MFCC Parameters")
 
+pre_emphasis = st.sidebar.slider("Pre-emphasis", 0.90, 0.99, 0.97)
 frame_size = st.sidebar.slider("Frame Size (ms)", 20, 50, 25)
 overlap = st.sidebar.slider("Frame Overlap (%)", 0, 90, 50)
 frame_stride_ms = int(frame_size * (1 - overlap / 100))
@@ -45,7 +46,7 @@ frame_stride_ms = int(frame_size * (1 - overlap / 100))
 n_fft = st.sidebar.selectbox("FFT Size", [256, 512, 1024], index=1)
 n_mels = st.sidebar.slider("Mel Filters", 10, 40, 20)
 n_mfcc = st.sidebar.slider("MFCC Coefficients", 5, 20, 13)
-pre_emphasis = st.sidebar.slider("Pre-emphasis", 0.90, 0.99, 0.97)
+
 
 st.sidebar.markdown("---")
 st.sidebar.caption(f"Session ID: `{str(uuid.uuid4())[:8]}`")
@@ -146,6 +147,7 @@ with tabs[2]:
         st.pyplot(mfcc_processor.plot_feature_variance(result["mfcc"]))
 
     st.markdown("**Feature Vector Dimension:**")
+    st.code(result["feature_vector"])
     st.code(result["feature_vector"].shape)
 
 
