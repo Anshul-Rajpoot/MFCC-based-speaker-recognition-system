@@ -2,7 +2,8 @@
 
 **Python | NumPy | SciPy | Librosa | Streamlit | DSP | ML-ready**
 
-<img width="1886" height="893" alt="MFCC Speaker Recognition System Screenshot" src="https://github.com/user-attachments/assets/46e3f62f-27f0-4e68-ace5-4b214f455a1b" />
+<img width="1520" height="655" alt="image" src="https://github.com/user-attachments/assets/dfca9332-ebc6-47b1-8561-6e9d9767b4d0" />
+
 
 ---
 
